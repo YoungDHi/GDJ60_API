@@ -10,24 +10,25 @@ public class WeatherInput {
 	public WeatherDTO search(WeatherDTO [] weatherDTOs) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("검색할 도시를 입력해주세요");
-		String name = sc.next();
+		String name = sc.next().toLowerCase();
+		WeatherDTO weatherDTO= null;
 		for(int i=0;i<weatherDTOs.length;i++) {
-			if(name.toLowerCase().equals(weatherDTOs[i].getCity().toLowerCase())) {
-				return weatherDTOs[i];
+			if(name.equals(weatherDTOs[i].getCity().toLowerCase())) {
+				weatherDTO = weatherDTOs[i];
+				
 			}
-		
 		}
-		return null;
+		return weatherDTO;
 	}
 	
 	//add
 	//배열을 받고, 키보드로부터 정보들을 입력받음
 	//배열에 추가하고 배열을 리턴
-	public void add(WeatherDTO[] weatherDTOs) {
+	public WeatherDTO[] add(WeatherDTO[] weatherDTOs) {
 		Scanner sc=new Scanner(System.in);
 		WeatherDTO weatherDTO = new WeatherDTO();
 		
-		System.out.println("도시를 입력해주세요");
+		System.out.println("추가할 도시를 입력해주세요");
 		weatherDTO.setCity(sc.next());
 		System.out.println("기온을 입력해주세요");
 		weatherDTO.setGion(sc.next());
@@ -43,10 +44,25 @@ public class WeatherInput {
 		for(int i=0;i<weatherDTOs.length;i++) {
 			newWeatherDTOs[i] = weatherDTOs[i];
 		}
-		
+		newWeatherDTOs[weatherDTOs.length]=weatherDTO;
+		return newWeatherDTOs;
 	}
 	//remove
 	//배열을 받고, 키보드로부터 삭제할 도시명을 입력 받음
 	//배열에서 삭제하고 배열을 리턴
-	
+	public void remove(WeatherDTO[] weatherDTOs) {
+		Scanner sc=new Scanner(System.in);
+		WeatherDTO weatherDTO = new WeatherDTO();
+		
+		System.out.println("삭제할 도시를 입력해주세요");
+		String name = sc.next().toUpperCase();
+		for(int i=0;i<weatherDTOs.length;i++) {
+			if(name.equals(weatherDTOs[i].getCity().toUpperCase())) {
+				
+			}
+			
+		}
+		
+	}
+		
 }
