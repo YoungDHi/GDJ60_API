@@ -7,16 +7,16 @@ public class StringEx1 {
 		String phone = "010-1234-5678";
 	
 		
-		int num = phone.indexOf('-');
-		System.out.println("1차 : " + num);
-		boolean check = num !=-1;
+		int num=phone.indexOf('-');
+		System.out.println("1차 : "+num);
+		boolean check=(num!=-1);
 		while(check) {
 			if(check) {
-				System.out.println("Num : " + num);
-				num = phone.indexOf('-', num+1);
+				System.out.println("Num : "+num);
+				num=phone.indexOf('-', num+1);
 			} else {
 				break;
-//			num = phone.indexOf('-', num+1);
+//			num=phone.indexOf('-', num+1);
 //			System.out.println("Num : " + num);
 //			if(num == -1) {
 //				check = false;
