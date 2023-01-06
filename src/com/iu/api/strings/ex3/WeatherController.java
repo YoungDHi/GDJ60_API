@@ -15,43 +15,44 @@ public class WeatherController {
 		System.out.println("원하는 메뉴를 선택해주세요");
 		System.out.println("1.날씨정보초기화 2.전국날씨정보 3.지역날씨검색 "
 				+ "4.지역날씨추가 5.지역날씨삭제 6.종료");
-		int select = sc.nextInt();
-		if(select==6) {
-			System.out.println("종료입니다");
-			break;
+		int select=sc.nextInt();
+		switch(select) {
 		//1. 날씨정보초기화
 		//	 초기화가 완료되었습니다
-		}else if(select==1) {
-			wDTOs=wd.init();
-			System.out.println("초기화가 완료되었습니다");	
-		}else if(select==2) {
-			//2. 전국날씨정보
-			System.out.println("전국날씨정보를 검색합니다");
+		case 1:
+			wDTOs = wd.init();
+			System.out.println("초기화가 완료되었습니다.");
+			break;
+		//2. 전국날씨정보	
+		case 2:
 			wv.view(wDTOs);
-		}else if(select==3) {
-			//3. 지역날씨검색
-			//	 정보가 없으면 도시정보가 없습니다
+			break;
+		//3. 지역날씨 검색
+		//정보가 없으면 도시정보가 없습니다.
+		case 3:
 			System.out.println("지역날씨를 검색합니다");
-			if(wi.search(wDTOs)!=null) {
-				wv.view(wi.search(wDTOs));
+			WeatherDTO wDTO = wi.search(wDTOs);
+			if(wDTO!=null) {
+			wv.view(wDTO);
 			}else {
 				System.out.println("도시정보가 없습니다");
 			}
-		}else if(select==4) {
-			//4. 지역날씨추가			
-			System.out.println("지역날씨를 추가합니다");
-			wDTOs=wi.add(wDTOs);
-			
-		}else {
-			System.out.println("지역날씨를 삭제합니다");
+			break;
+		//4. 지역날씨추가
+		case 4:
+			System.out.println("도시를 추가합니다");
+			wDTOs = wi.add(wDTOs);
+			break;
+		//5. 지역날씨삭제
+		case 5:
+			System.out.println("도시를 삭제합니다");
+			wDTOs = wi.remove(wDTOs);
+			break;
+		//6. 종료
+		default:
+			check=!true;
 		}
-	
-	
-	
-	
-	//5. 지역날씨삭제
-	//
-	//6. 종료
+			
 	}
 	}
 }

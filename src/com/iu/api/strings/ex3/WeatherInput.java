@@ -7,18 +7,16 @@ public class WeatherInput {
 	//search
 	//배열을 받고, 키보드로부터 검색할 도시명(대소문자 무관)을 입력받음
 	//찾은 DTO를 리턴,없으면 null
-	public WeatherDTO search(WeatherDTO [] weatherDTOs) {
+	public WeatherDTO search(WeatherDTO[] weatherDTOs) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("검색할 도시를 입력해주세요");
-		String name = sc.next().toLowerCase();
-		WeatherDTO weatherDTO= null;
+		String name = sc.next();
 		for(int i=0;i<weatherDTOs.length;i++) {
-			if(name.equals(weatherDTOs[i].getCity().toLowerCase())) {
-				weatherDTO = weatherDTOs[i];
-				
+			if(name.toUpperCase().equals(weatherDTOs[i].getCity().toUpperCase())) {
+				return weatherDTOs[i];
 			}
 		}
-		return weatherDTO;
+		return null;
 	}
 	
 	//add
@@ -50,19 +48,22 @@ public class WeatherInput {
 	//remove
 	//배열을 받고, 키보드로부터 삭제할 도시명을 입력 받음
 	//배열에서 삭제하고 배열을 리턴
-	public void remove(WeatherDTO[] weatherDTOs) {
+	public WeatherDTO[] remove(WeatherDTO[] weatherDTOs) {
 		Scanner sc=new Scanner(System.in);
-		WeatherDTO weatherDTO = new WeatherDTO();
+		WeatherDTO[] newWeatherDTOs = new WeatherDTO[weatherDTOs.length-1];
 		
 		System.out.println("삭제할 도시를 입력해주세요");
 		String name = sc.next().toUpperCase();
+		int idx=0;
 		for(int i=0;i<weatherDTOs.length;i++) {
 			if(name.equals(weatherDTOs[i].getCity().toUpperCase())) {
-				
+				continue;
 			}
-			
+			newWeatherDTOs[idx]=weatherDTOs[i];
+			idx++;
 		}
 		
+		return newWeatherDTOs;
 	}
 		
 }
