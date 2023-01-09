@@ -29,11 +29,11 @@ public class WeatherInput {
 		System.out.println("추가할 도시를 입력해주세요");
 		weatherDTO.setCity(sc.next());
 		System.out.println("기온을 입력해주세요");
-		weatherDTO.setGion(sc.next());
+		weatherDTO.setGion(sc.nextInt());
 		System.out.println("날씨를 입력해주세요");
 		weatherDTO.setStatus(sc.next());
 		System.out.println("미세먼지를 입력해주세요");
-		weatherDTO.setMise(sc.next());
+		weatherDTO.setMise(sc.nextInt());
 		System.out.println("City	: "+weatherDTO.getCity());
 		System.out.println("Gion	: "+weatherDTO.getGion());
 		System.out.println("Status	: "+weatherDTO.getStatus());
