@@ -19,14 +19,33 @@ public class StudentDAO {
 	public void studentInit() {
 		
 		StringTokenizer st=new StringTokenizer(this.sb.toString(),"-");
-		ArrayList arr = new ArrayList<>();
+		StringTokenizer st2=new StringTokenizer(this.sb.toString(),",");
+		ArrayList arr = new ArrayList();
+		
+		int i=0;
+		
 		while(st.hasMoreTokens()) {
-			arr(0,st.nextToken());
-			
-			
+			StudentDTO studentDTO = new StudentDTO();
+			studentDTO.setName(st.nextToken());
+			studentDTO.setNum(Integer.parseInt(st.nextToken()));
+			studentDTO.setKor(Integer.parseInt(st.nextToken()));
+			studentDTO.setEng(Integer.parseInt(st.nextToken()));
+			studentDTO.setMath(Integer.parseInt(st.nextToken()));
+			arr.add(i,studentDTO);
+			i++;
+			while(st2.hasMoreTokens()) {
+				st2.nextToken();
+				studentDTO.setName(st2.nextToken());
+				studentDTO.setNum(Integer.parseInt(st2.nextToken()));
+				studentDTO.setKor(Integer.parseInt(st2.nextToken()));
+				studentDTO.setEng(Integer.parseInt(st2.nextToken()));
+				studentDTO.setMath(Integer.parseInt(st2.nextToken()));
+				arr.add(i,studentDTO);
+				
+			}
 		}
 		
-	
+		System.out.println(arr);
 		
 		
 		
