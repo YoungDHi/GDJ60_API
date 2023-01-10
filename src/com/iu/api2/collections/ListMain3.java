@@ -15,11 +15,11 @@ public class ListMain3 {
 		int num = ar.get(0);
 		
 		
-		ArrayList<weatherDTO> ar2 = new ArrayList();
-		weatherDTO weatherDTO = new weatherDTO();
+		ArrayList<WeatherDTO> ar2 = new ArrayList();
+		WeatherDTO weatherDTO = new WeatherDTO();
 		weatherDTO.setCity("Seoul");
 		ar2.add(weatherDTO);
-		weatherDTO = new weatherDTO();
+		weatherDTO = new WeatherDTO();
 		weatherDTO.setCity("JEJU");
 		ar2.add(weatherDTO);
 		
