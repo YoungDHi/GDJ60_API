@@ -22,19 +22,15 @@ public class StudentDAO {
 		data = data.replace(",", "");
 		
 		StringTokenizer st = new StringTokenizer(this.sb.toString(),"-");
-		ArrayList arr = new ArrayList();
+		ArrayList<StudentDAO> ar = new ArrayList<>();
 		
-		int i=0;
+		
 		
 		while(st.hasMoreTokens()) {
 			StudentDTO studentDTO = new StudentDTO();
-			studentDTO.setName(st.nextToken());
-			studentDTO.setNum(Integer.parseInt(st.nextToken()));
-			studentDTO.setKor(Integer.parseInt(st.nextToken()));
-			studentDTO.setEng(Integer.parseInt(st.nextToken()));
-			studentDTO.setMath(Integer.parseInt(st.nextToken()));
-			arr.add(i,studentDTO);
-			i++;
+		
+			
+			
 			
 			}
 		}
