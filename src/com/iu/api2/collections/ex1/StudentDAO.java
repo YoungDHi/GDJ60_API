@@ -18,9 +18,10 @@ public class StudentDAO {
 	
 	public void studentInit() {
 		String data = sb.toString();
-		data.replace(" ", "-");
+		data = data.replace(" ", "-");
+		data = data.replace(",", "");
 		
-		StringTokenizer st=new StringTokenizer(this.sb.toString(),"-");
+		StringTokenizer st = new StringTokenizer(this.sb.toString(),"-");
 		ArrayList arr = new ArrayList();
 		
 		int i=0;
@@ -42,7 +43,7 @@ public class StudentDAO {
 		
 		
 		
-	}
+	
 	
 
 }
