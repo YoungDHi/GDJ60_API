@@ -1,6 +1,9 @@
 package com.iu.api2.collections.ex1;
 
+import java.util.ArrayList;
+
 public class Ex1Main {
+	
 
 	public static void main(String[] args) {
 		//학생은 이름 번호 국어 영어 수학 총점 평균으로 이루어짐
@@ -10,10 +13,21 @@ public class Ex1Main {
 		//4. 학생정보추가
 		//5. 학생정보삭제(이름)
 		//6. 프로그램종료
-		StudentDAO studentDAO = new StudentDAO();
-		studentDAO.studentinit();
+		StudentController studentController = new StudentController();
+		studentController.start();
 		
 		
+//		//향상된 for
+//		
+//		for(StudentDTO studentDTO:ar) {
+//			
+//			
+//		}
+//		int [] nums = new int [3];
+//		for(int n:nums) {
+//			
+//			
+//		}
 
 	}
 
