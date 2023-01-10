@@ -1,5 +1,8 @@
 package com.iu.api2.collections.ex1;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 public class StudentDAO {
 	
 	private StringBuffer sb;
@@ -11,6 +14,17 @@ public class StudentDAO {
 		sb.append("winter-2-86-84-72-");
 		sb.append("suji, 3, 89 ,74, 87 ");
 		sb.append("choa, 4, 71, 25, 99 ");
+	}
+	
+	public void studentInit() {
+		
+		StringTokenizer st=new StringTokenizer(this.sb.toString(),"-");
+		ArrayList<E> arr = new ArrayList<>();
+		
+	
+		
+		
+		
 	}
 	
 
