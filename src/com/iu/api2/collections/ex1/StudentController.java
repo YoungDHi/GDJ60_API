@@ -1,11 +1,20 @@
 package com.iu.api2.collections.ex1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentController {
-	Scanner sc = new Scanner(System.in);
-	StudentDAO sDAO=new StudentDAO();
-	StudentView sv=new StudentView();
+	private Scanner sc;
+	private StudentDAO sDAO;
+	private StudentView studentView;
+	private ArrayList<StudentDTO> ar;
+	
+	public StudentController () {
+		sc=new Scanner(System.in);
+		sDAO = new StudentDAO();
+		studentView = new StudentView();
+		
+	}
 	
 	public void start() {
 		boolean check = true;
@@ -21,18 +30,30 @@ public class StudentController {
 		switch(select) {
 		case 1:
 			System.out.println("1.학생정보를 초기화합니다");
-			sDAO.studentInit();
+			ar = sDAO.studentInit();
 			break;
 		case 2:
 			System.out.println("2. 전체학생정보를 조회합니다");
-			sv.view();
+			studentView.view(ar);
+			break;
 		case 3:
 			System.out.println("3. 학생정보를 검색합니다");
-			
+			StudentDTO studentDTO = sDAO.search(ar);
+			if(studentDTO != null) {
+				studentView.view(studentDTO);
+			} else {
+				System.out.println("학생정보가 없습니다.");
+			}
+			break;
 		case 4:
-			
+			sDAO.add(ar);
+			break;
 		case 5:
-			
+			int i = sDAO.remove(ar);
+			if(i==1) {
+				System.out.println("삭제성공");
+			}
+			break;
 		case 6:
 			check = false;
 			break;

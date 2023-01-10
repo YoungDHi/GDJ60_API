@@ -1,5 +1,7 @@
 package com.iu.api2.collections.ex1;
 
+import java.util.ArrayList;
+
 public class Ex1Main {
 
 	public static void main(String[] args) {
@@ -13,10 +15,9 @@ public class Ex1Main {
 		//6. 프로그램종료
 //		StudentController studentController = new StudentController();
 //		studentController.start();
-		StudentDAO studentDAO = new StudentDAO();
-		studentDAO.studentInit();
+		StudentController sc = new StudentController();
+		sc.start();
 		
-		System.out.println("Finish");
 		
 
 	}

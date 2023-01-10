@@ -1,10 +1,33 @@
 package com.iu.api2.collections.ex1;
 
+import java.util.ArrayList;
+
 public class StudentView {
 	
-	public void view() {
+	public void view(ArrayList<StudentDTO> ar) {
 		
-		StudentDAO studentDAO = new StudentDAO();
+//		for(int i=0;i<ar.size();i++) {
+//			this.view(ar.get(i));
+//		}
+		
+		for(StudentDTO studentDTO:ar) {
+			this.view(studentDTO);
+			
+			
+		}
+		
+		
+	}
+	
+	public void view(StudentDTO studentDTO) {
+		System.out.println("Name : "+studentDTO.getName());
+		System.out.println("Num : "+studentDTO.getNum());
+		System.out.println("Kor : "+studentDTO.getKor());
+		System.out.println("Eng : "+studentDTO.getEng());
+		System.out.println("Math : "+studentDTO.getMath());
+		System.out.println("Total : "+studentDTO.getTotal());
+		System.out.println("Avg : "+studentDTO.getAvg());
+		System.out.println("-------------------------");
 		
 		
 	}
