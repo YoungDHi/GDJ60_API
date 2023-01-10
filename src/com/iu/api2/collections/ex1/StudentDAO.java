@@ -67,12 +67,12 @@ public class StudentDAO {
 	//학생정보검색
 	public StudentDTO search(ArrayList<StudentDTO> ar) {
 		System.out.println("검색할 이름 입력");
-		String name = sc.next();
+		String name = sc.next().toUpperCase();
 		
 		StudentDTO st = null;
 		
 		for(StudentDTO studentDTO:ar) {
-			if(name.equals(studentDTO.getName())) {
+			if(name.equals(studentDTO.getName().toUpperCase())) {
 				st = studentDTO;
 				break;
 			}
@@ -88,7 +88,7 @@ public class StudentDAO {
 		data=data.replace(" ", "-");
 		data=data.replace(",", "");
 		
-		System.out.println(data);
+		
 		
 		StringTokenizer st = new StringTokenizer(data,"-");
 		while(st.hasMoreTokens()) {
@@ -103,6 +103,7 @@ public class StudentDAO {
 			ar.add(studentDTO);
 			
 		}
+		System.out.println("초기화가 완료되었습니다");
 		return ar;
 	}
 	

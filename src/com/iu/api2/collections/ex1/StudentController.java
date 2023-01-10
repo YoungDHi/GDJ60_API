@@ -21,10 +21,10 @@ public class StudentController {
 		while(check) {
 			System.out.println("1. 학생정보초기화");
 			System.out.println("2. 학생정보전체조회");
-			System.out.println("3. 학생정보");
-			System.out.println("4. 학생정보초기화");
-			System.out.println("5. 학생정보초기화");
-			System.out.println("6. 학생정보초기화");
+			System.out.println("3. 검색학생조회");
+			System.out.println("4. 학생정보추가");
+			System.out.println("5. 학생정보삭제");
+			System.out.println("6. 프로그램 종료");
 			int select = sc.nextInt();
 			
 			switch(select) {
@@ -42,6 +42,7 @@ public class StudentController {
 				}else {
 					System.out.println("학생이 없다");
 				}
+				break;
 			case 4:
 				studentDAO.add(ar);
 				break;
@@ -51,6 +52,7 @@ public class StudentController {
 					studentView.view("삭제 성공");
 					
 				}
+				break;
 			case 6:
 				check=false;
 				break;
