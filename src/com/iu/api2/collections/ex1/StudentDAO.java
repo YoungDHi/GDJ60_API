@@ -19,7 +19,12 @@ public class StudentDAO {
 	public void studentInit() {
 		
 		StringTokenizer st=new StringTokenizer(this.sb.toString(),"-");
-		ArrayList<E> arr = new ArrayList<>();
+		ArrayList arr = new ArrayList<>();
+		while(st.hasMoreTokens()) {
+			arr(0,st.nextToken());
+			
+			
+		}
 		
 	
 		
