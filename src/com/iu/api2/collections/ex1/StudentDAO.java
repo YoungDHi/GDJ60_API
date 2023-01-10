@@ -17,9 +17,10 @@ public class StudentDAO {
 	}
 	
 	public void studentInit() {
+		String data = sb.toString();
+		data.replace(" ", "-");
 		
 		StringTokenizer st=new StringTokenizer(this.sb.toString(),"-");
-		StringTokenizer st2=new StringTokenizer(this.sb.toString(),",");
 		ArrayList arr = new ArrayList();
 		
 		int i=0;
@@ -33,19 +34,11 @@ public class StudentDAO {
 			studentDTO.setMath(Integer.parseInt(st.nextToken()));
 			arr.add(i,studentDTO);
 			i++;
-			while(st2.hasMoreTokens()) {
-				st2.nextToken();
-				studentDTO.setName(st2.nextToken());
-				studentDTO.setNum(Integer.parseInt(st2.nextToken()));
-				studentDTO.setKor(Integer.parseInt(st2.nextToken()));
-				studentDTO.setEng(Integer.parseInt(st2.nextToken()));
-				studentDTO.setMath(Integer.parseInt(st2.nextToken()));
-				arr.add(i,studentDTO);
-				
+			
 			}
 		}
 		
-		System.out.println(arr);
+		
 		
 		
 		
