@@ -13,7 +13,7 @@ public class SetMain {
 		hs.add(11);
 		hs.add(11);
 		hs.add(2);
-		hs.remove(1);
+		
 		System.out.println(hs.toString());
 		System.out.println(hs.size());
 		
