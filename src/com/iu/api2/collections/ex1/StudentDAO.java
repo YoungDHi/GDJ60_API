@@ -22,19 +22,23 @@ public class StudentDAO {
 		data = data.replace(",", "");
 		
 		StringTokenizer st = new StringTokenizer(this.sb.toString(),"-");
-		ArrayList<StudentDAO> ar = new ArrayList<>();
-		
-		
+		ArrayList<StudentDAO> ar = new ArrayList<>();	
 		
 		while(st.hasMoreTokens()) {
 			StudentDTO studentDTO = new StudentDTO();
+			studentDTO.setName(st.nextToken());
+			studentDTO.setNum(Integer.parseInt(st.nextToken()));
+			
+			
+			
+			
 		
 			
 			
 			
 			}
 		}
-		
+}	
 		
 		
 		
@@ -42,4 +46,4 @@ public class StudentDAO {
 	
 	
 
-}
+

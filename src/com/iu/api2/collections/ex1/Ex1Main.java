@@ -11,8 +11,10 @@ public class Ex1Main {
 		//4. 학생정보추가
 		//5. 학생정보삭제(이름)
 		//6. 프로그램종료
-		StudentController studentController = new StudentController();
-		studentController.start();
+//		StudentController studentController = new StudentController();
+//		studentController.start();
+		StudentDAO studentDAO = new StudentDAO();
+		studentDAO.studentInit();
 		
 		System.out.println("Finish");
 		
