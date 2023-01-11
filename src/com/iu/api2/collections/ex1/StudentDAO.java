@@ -1,5 +1,8 @@
 package com.iu.api2.collections.ex1;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -18,6 +21,28 @@ public class StudentDAO {
 		sb.append("choa, 4, 71, 25, 99 ");
 	}
 	
+	//6. 학생정보백업
+	public void backup(ArrayList<StudentDTO> ar) {
+		File file = new File("C:\\fileTest", "student.txt");
+		for(StudentDTO studentDTO:ar) {
+			String name = studentDTO.getName();
+			int num = studentDTO.getNum();
+			int kor = studentDTO.getKor();
+			int eng = studentDTO.getEng();
+			int math = studentDTO.getMath();			
+			try {
+				FileWriter fw = new FileWriter(file, true);
+				fw.write(name+"-"+num+"-"+kor+"-"+eng+"-"+math+"\r\n");
+				fw.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		System.out.println("백업완료");
+		
+	}
 	
 	
 	//5. 학생정보삭제
