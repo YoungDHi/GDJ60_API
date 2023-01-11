@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class IoMain1 {
 
@@ -11,6 +12,8 @@ public class IoMain1 {
 		//1. 키보드 연결
 		//표준입력기 : 키보드, 마우스, 스캐너
 		//표준출력기 : 모니터
+		Scanner sc=new Scanner(System.in);
+		
 		//byte, 0, 1
 		InputStream is = System.in;
 		//char
@@ -25,6 +28,19 @@ public class IoMain1 {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				br.close();
+				ir.close();
+				is.close();
+				sc.close();
+				
+				
+		
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		
