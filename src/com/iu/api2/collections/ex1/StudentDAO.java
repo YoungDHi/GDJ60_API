@@ -1,9 +1,13 @@
 package com.iu.api2.collections.ex1;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -22,8 +26,12 @@ public class StudentDAO {
 	}
 	
 	//6. 학생정보백업
-	public void backup(ArrayList<StudentDTO> ar) {
-		File file = new File("C:\\fileTest", "student.txt");
+	public File backup(ArrayList<StudentDTO> ar) {
+		Calendar ca = Calendar.getInstance();
+		String n = ca.getTimeInMillis()+"";
+		File file1 = new File("C:\\fileTest", n);
+		file1.mkdir();
+		File file = new File("C:\\fileTest\\"+n, "student.txt");
 		for(StudentDTO studentDTO:ar) {
 			String name = studentDTO.getName();
 			int num = studentDTO.getNum();
@@ -41,7 +49,7 @@ public class StudentDAO {
 			
 		}
 		System.out.println("백업완료");
-		
+		return file;
 	}
 	
 	
@@ -111,6 +119,39 @@ public class StudentDAO {
 			studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
 			studentDTO.setAvg(studentDTO.getTotal()/3);
 			ar.add(studentDTO);
+		}
+		return ar;
+	}
+	public ArrayList<StudentDTO> studenInit(File file) {
+		File f = new File(file,"student");
+		ArrayList<StudentDTO> ar = new ArrayList<>();
+		try {
+			FileReader fr = new FileReader(f);
+			BufferedReader br = new BufferedReader(fr);
+			while(true) {
+				String data = br.readLine();
+				
+				if(data==null) {
+					break;
+				}else {
+					StringTokenizer st = new StringTokenizer(data,"-");
+					while(st.hasMoreTokens()) {
+						StudentDTO studentDTO = new StudentDTO();
+						studentDTO.setName(st.nextToken());
+						studentDTO.setNum(Integer.parseInt(st.nextToken()));
+						studentDTO.setKor(Integer.parseInt(st.nextToken()));
+						studentDTO.setEng(Integer.parseInt(st.nextToken()));
+						studentDTO.setMath(Integer.parseInt(st.nextToken()));
+						studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
+						studentDTO.setAvg(studentDTO.getTotal()/3);
+						ar.add(studentDTO);
+					}
+					
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return ar;
 	}
