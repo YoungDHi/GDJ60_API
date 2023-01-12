@@ -108,14 +108,35 @@ public class StudentDAO {
 	
 	//1. 학생정보 초기화
 	public ArrayList<StudentDTO> studentInit() {
-		String data = this.sb.toString();
-		data = data.replace(" ", "-");
-		data = data.replace(",", "");
 		
+		//File f = new File("C:\\fileTest","student.txt");
+		File file = new File("C:\\fileTest");
+		String[] files = file.list();
+		long max = 0;
+		for(String filename:files) {
+			filename=filename.substring(0, filename.lastIndexOf("."));
+			long n= Long.parseLong(filename);
+			
+			if(n>max) {
+				max=n;
+			}
+		}
+		
+		
+		
+		File f = new File("C:\\fileTest",max+".txt");
+		FileReader fr = null;
+		BufferedReader br = null;
 		ArrayList<StudentDTO> ar = new ArrayList();
-		StringTokenizer st = new StringTokenizer(data,"-");
-		
-		while(st.hasMoreTokens()) {
+		try {
+			fr = new FileReader(f);
+			br = new BufferedReader(fr);
+			String data=null;
+		while((data=br.readLine()) !=null) {
+			data = data.replace(" ", "-");
+			data = data.replace(",", "");
+			StringTokenizer st = new StringTokenizer(data,"-");			
+			
 			StudentDTO studentDTO = new StudentDTO();
 			studentDTO.setName(st.nextToken());
 			studentDTO.setNum(Integer.parseInt(st.nextToken()));
@@ -125,43 +146,17 @@ public class StudentDAO {
 			studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
 			studentDTO.setAvg(studentDTO.getTotal()/3);
 			ar.add(studentDTO);
+			
 		}
-		return ar;
-	}
-	public ArrayList<StudentDTO> studenInit(File file) {
-		File f = new File(file,"student");
-		ArrayList<StudentDTO> ar = new ArrayList<>();
-		try {
-			FileReader fr = new FileReader(f);
-			BufferedReader br = new BufferedReader(fr);
-			while(true) {
-				String data = br.readLine();
-				
-				if(data==null) {
-					break;
-				}else {
-					StringTokenizer st = new StringTokenizer(data,"-");
-					while(st.hasMoreTokens()) {
-						StudentDTO studentDTO = new StudentDTO();
-						studentDTO.setName(st.nextToken());
-						studentDTO.setNum(Integer.parseInt(st.nextToken()));
-						studentDTO.setKor(Integer.parseInt(st.nextToken()));
-						studentDTO.setEng(Integer.parseInt(st.nextToken()));
-						studentDTO.setMath(Integer.parseInt(st.nextToken()));
-						studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
-						studentDTO.setAvg(studentDTO.getTotal()/3);
-						ar.add(studentDTO);
-					}
-					
-				}
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		}catch (Exception e) {
 			e.printStackTrace();
+			// TODO: handle exception
 		}
+		
+		
+		
 		return ar;
 	}
-	
 }	
 		
 		
