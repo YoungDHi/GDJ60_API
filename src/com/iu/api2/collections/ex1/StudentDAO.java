@@ -28,26 +28,32 @@ public class StudentDAO {
 	//6. 학생정보백업
 	public File backup(ArrayList<StudentDTO> ar) {
 		Calendar ca = Calendar.getInstance();
-		String n = ca.getTimeInMillis()+"";
-		File file1 = new File("C:\\fileTest", n);
-		file1.mkdir();
-		File file = new File("C:\\fileTest\\"+n, "student.txt");
-		for(StudentDTO studentDTO:ar) {
-			String name = studentDTO.getName();
-			int num = studentDTO.getNum();
-			int kor = studentDTO.getKor();
-			int eng = studentDTO.getEng();
-			int math = studentDTO.getMath();			
+		long n = ca.getTimeInMillis();
+		File file = new File("C:\\fileTest\\",n+".txt");
+		FileWriter fw = null;
 			try {
-				FileWriter fw = new FileWriter(file, true);
+				fw = new FileWriter(file, true);
+				for(StudentDTO studentDTO:ar) {
+					String name = studentDTO.getName();
+					int num = studentDTO.getNum();
+					int kor = studentDTO.getKor();
+					int eng = studentDTO.getEng();
+					int math = studentDTO.getMath();			
 				fw.write(name+"-"+num+"-"+kor+"-"+eng+"-"+math+"\r\n");
+				}
 				fw.flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally {
+				try {
+					fw.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
-		}
 		System.out.println("백업완료");
 		return file;
 	}
