@@ -47,12 +47,23 @@ public class StudentController {
 			String [] s = select.split("-");
 			switch(s[0]) {
 			case "1":
+				//1:
 				select = studentDAO.makelist(ar);
 				break;
 				
 			case "2":
-					
+				//2:iu
+				//select = studentDAO.findbyname(ar, s[1]);
+				
+				
 				break;
+			case "3":
+				//3:iu-4-50-72-81
+				//s[1]
+				//select = studentDAO.addStudent(ar,s[1]);
+				break;
+			case "4":
+				
 				
 				default:
 					check = false;

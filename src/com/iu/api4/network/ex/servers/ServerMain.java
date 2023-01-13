@@ -39,14 +39,14 @@ public class ServerMain {
 			socket = ss.accept();
 			System.out.println("client와 연결 성공");
 			while(check) {
-//				is = socket.getInputStream();
-//				ir = new InputStreamReader(is);
-//				br = new BufferedReader(ir);
-//				msg = br.readLine();
+				is = socket.getInputStream();
+				ir = new InputStreamReader(is);
+				br = new BufferedReader(ir);
+				msg = br.readLine();
 				String student = "iu-1-20-30-40-suji-2-30-40-50";
-//				os = socket.getOutputStream();
-//				ow = new OutputStreamWriter(os);
-//				bw = new BufferedWriter(ow);
+				os = socket.getOutputStream();
+				ow = new OutputStreamWriter(os);
+				bw = new BufferedWriter(ow);
 				if(msg.equals("1")) {
 					bw.write(student+"\r\n");
 					bw.flush();
