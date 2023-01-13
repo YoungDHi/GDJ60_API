@@ -32,7 +32,7 @@ public class StudentController {
 		
 		boolean check = true;
 		try {
-			socket = new Socket("127.1.1.1", 8282);
+			socket = new Socket("127.0.0.1", 8282);
 			System.out.println("Server 접속 성공");
 			os = socket.getOutputStream();
 			ow = new OutputStreamWriter(os);
@@ -41,6 +41,10 @@ public class StudentController {
 			is = socket.getInputStream();
 			ir = new InputStreamReader(is);
 			br = new BufferedReader(ir);
+			StudentDTO studentDTO = new StudentDTO();
+			StudentView sv = new StudentView();
+			StudentDAO studentDAO = new StudentDAO();
+			String result = null;
 			
 			while(check) {
 				System.out.println("원하는 번호를 입력해주세요");
@@ -50,18 +54,13 @@ public class StudentController {
 				switch(select) {
 				case 1:
 					System.out.println("전체학생정보를 출력합니다");
-					bw.write(select+"\r\n");
+					bw.write("1:\r\n");
 					bw.flush();
 					
-					data ="1. "+br.readLine();
-					
-					select = Integer.parseInt(data.substring(0, 1));
-					data = data.substring(3);
-					StringTokenizer st = new StringTokenizer(data,"-");
-					StudentView sv = new StudentView();
-					StudentDTO studentDTO = new StudentDTO();
-					StudentDAO studentDAO = new StudentDAO();
-					String result = null;
+					data = "1:"+br.readLine();
+					data = data.substring(2);
+					System.out.println(data);
+					StringTokenizer st = new StringTokenizer(data, "-");
 					while(st.hasMoreTokens()) {
 						studentDTO = new StudentDTO();
 						studentDTO.setName(st.nextToken());
@@ -69,42 +68,50 @@ public class StudentController {
 						studentDTO.setKor(Integer.parseInt(st.nextToken()));
 						studentDTO.setEng(Integer.parseInt(st.nextToken()));
 						studentDTO.setMath(Integer.parseInt(st.nextToken()));
-						studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
-						studentDTO.setAvg(studentDTO.getTotal()/3);
+						studentDTO.setTotal(Integer.parseInt(st.nextToken()));
+						studentDTO.setAvg(Double.parseDouble(st.nextToken()));
 						ar.add(studentDTO);
-					}
+						}
 					sv.view(ar);
 					break;
 				case 2:
 					System.out.println("학생의 이름을 검색해주세요");
 					String name = scanner.next();
-					bw.write("2."+name+"\r\n");
+					bw.write("2:"+name+"\r\n");
 					bw.flush();
-					data = "2. "+br.readLine();
-					StringTokenizer st2 = new StringTokenizer(data,"-");
-					while(st2.hasMoreTokens()) {
-						studentDTO = new StudentDTO();
-						studentDTO.setName(st2.nextToken());
-						studentDTO.setNum(Integer.parseInt(st2.nextToken()));
-						studentDTO.setKor(Integer.parseInt(st2.nextToken()));
-						studentDTO.setEng(Integer.parseInt(st2.nextToken()));
-						studentDTO.setMath(Integer.parseInt(st2.nextToken()));
+					data = "2:"+br.readLine();
+					data = data.substring(2);
+					System.out.println(data);
+					if(data != null) {
+						String [] onename = data.split("-");
+						studentDTO.setName(onename[0]);
+						studentDTO.setNum(Integer.parseInt(onename[1]));
+						studentDTO.setKor(Integer.parseInt(onename[2]));
+						studentDTO.setEng(Integer.parseInt(onename[3]));
+						studentDTO.setMath(Integer.parseInt(onename[4]));
 						studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
-						studentDTO.setAvg(studentDTO.getTotal()/3);
-						ar.add(studentDTO);
+						studentDTO.setAvg(studentDTO.getTotal()/3.0);
+						System.out.println("검색한 학생의 정보를 출력합니다");
+						sv.view(studentDTO);
+					} else {
+						System.out.println("학생정보가 없습니다");
 					}
-					System.out.println("검색한 학생의 정보를 출력합니다");
-					sv.view(studentDTO);
 					break;
 				case 3:
 					result = studentDAO.add();
+					bw.write("3:"+result+"\r\n");
+					bw.flush();
 					break;
 				case 4:
 					result = studentDAO.remove();
-					
+					bw.write("4:"+result+"\r\n");
+					bw.flush();
 					break;
 				default:
-					
+					bw.write(select+"\r\n");
+					bw.flush();
+					System.out.println("시스템 종료");
+					check = false;
 					break;
 				}
 			}

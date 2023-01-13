@@ -12,6 +12,7 @@ public class StudentView {
 		System.out.println("Math : "+studentDTO.getMath());
 		System.out.println("Total : "+studentDTO.getTotal());
 		System.out.println("Avg : "+studentDTO.getAvg());
+		System.out.println("========================");
 		
 	}
 	public void view(ArrayList<StudentDTO> ar) {
