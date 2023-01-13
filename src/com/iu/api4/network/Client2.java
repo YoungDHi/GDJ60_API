@@ -29,28 +29,28 @@ public class Client2 {
 			os = socket.getOutputStream();
 			ow = new OutputStreamWriter(os);
 			bw = new BufferedWriter(ow);
-
-			System.out.println("원하는 번호를 입력해주세요");
-			System.out.println("1. 점심메뉴 추천, 2. 저녁메뉴 추천, 3. 종료");
-			int select = scanner.nextInt();
-			bw.write(select+"\r\n");
-			bw.flush();
-			if(select == 1) {
-				is = socket.getInputStream();
-				ir = new InputStreamReader(is);
-				br = new BufferedReader(ir);
-				String menu = br.readLine();
-				System.out.println("점심 메뉴 : "+menu);
-			} else if(select == 2) {
-				is = socket.getInputStream();
-				ir = new InputStreamReader(is);
-				br = new BufferedReader(ir);
-				String menu = br.readLine();
-				System.out.println("저녁 메뉴 : "+menu);
-			} else {
-				System.out.println("시스템을 종료합니다");
-			}
 			
+			is = socket.getInputStream();
+			ir = new InputStreamReader(is);
+			br = new BufferedReader(ir);
+			while(true) {
+				System.out.println("원하는 번호를 입력해주세요");
+				System.out.println("1. 점심메뉴 추천, 2. 저녁메뉴 추천, 3. 종료");
+				int select = scanner.nextInt();
+				bw.write(select+"\r\n");
+				bw.flush();
+				String menu = br.readLine();
+				if(select == 1) {
+					System.out.println("점심메뉴를 추천합니다");
+					System.out.println("점심 메뉴 : "+menu);
+				} else if(select == 2) {
+					System.out.println("저녁메뉴를 추천합니다");
+					System.out.println("저녁 메뉴 : "+menu);
+				} else {
+					System.out.println("시스템을 종료합니다");
+					break;
+				}
+			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -18,52 +18,52 @@ public class Server2 {
 	public static void main(String[] args) {
 		ServerSocket ss = null;
 		Socket socket = null;
+		
 		InputStream is = null;
 		InputStreamReader ir = null;
 		BufferedReader br = null;
-		Calendar ca = Calendar.getInstance();
-		Random random = new Random(ca.getTimeInMillis());
+		
 		OutputStream os = null;
-		OutputStreamWriter or = null;
+		OutputStreamWriter ow = null;
 		BufferedWriter bw = null;
 		String menu = null;
+		ArrayList<String> lunch = new ArrayList<>();
+		lunch.add("짜장면");
+		lunch.add("짬뽕");
+		lunch.add("볶음밥");
+		ArrayList<String> diner = new ArrayList<>();
+		diner.add("피자");
+		diner.add("치킨");
+		diner.add("삼겹살");
 		try {
 			// Client접속 대기
 			ss = new ServerSocket(8282);
 			System.out.println("Client의 접속을 기다리는 중");
 			socket = ss.accept();
 			System.out.println("Client와 연결 성공");
-			is = socket.getInputStream();
-			ir = new InputStreamReader(is);
-			br = new BufferedReader(ir);
-			String select = br.readLine();
-			if(select.equals("1")) {
-				System.out.println("점심메뉴를 추천합니다");
-				ArrayList<String> ar = new ArrayList<>();
-				ar.add("짜장면");
-				ar.add("짬뽕");
-				ar.add("볶음밥");
-				menu = ar.get(random.nextInt(ar.size()));
-				os = socket.getOutputStream();
-				or = new OutputStreamWriter(os);
-				bw = new BufferedWriter(or);
-				bw.write(menu+"\r\n");
-				bw.flush();
-			}else if(select.equals("2")) {
-				System.out.println("저녁메뉴를 추천합니다");
-				ArrayList<String> ar = new ArrayList<>();
-				ar.add("피자");
-				ar.add("치킨");
-				ar.add("삼겹살");
-				menu = ar.get(random.nextInt(ar.size()));
-				os = socket.getOutputStream();
-				or = new OutputStreamWriter(os);
-				bw = new BufferedWriter(or);
-				bw.write(menu+"\r\n");
-				bw.flush();
-			}else {
-				System.out.println("시스템을 종료합니다");
-				
+				is = socket.getInputStream();
+				ir = new InputStreamReader(is);
+				br = new BufferedReader(ir);
+				while(true) {
+					Calendar ca = Calendar.getInstance();
+					Random random = new Random(ca.getTimeInMillis());
+
+					String select = br.readLine();
+					int s = Integer.parseInt(select);
+					
+					if(s==1) {
+						menu = lunch.get(random.nextInt(lunch.size()));
+					}else if(s==2) {
+						menu = diner.get(random.nextInt(diner.size()));
+					}else {
+						System.out.println("시스템을 종료합니다");
+						break;
+					}
+					os = socket.getOutputStream();
+					ow = new OutputStreamWriter(os);
+					bw = new BufferedWriter(ow);
+					bw.write(menu+"\r\n");
+					bw.flush();
 			}
 			
 			
