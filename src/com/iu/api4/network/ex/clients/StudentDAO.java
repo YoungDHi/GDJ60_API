@@ -22,5 +22,10 @@ public class StudentDAO {
 		name = name+","+num+","+Kor+","+Eng+","+Math;
 		return name;
 	}
-
+	public String remove() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("제거할 이름을 검색해주세요");
+		String name = scanner.next();
+		return name;
+	}
 }

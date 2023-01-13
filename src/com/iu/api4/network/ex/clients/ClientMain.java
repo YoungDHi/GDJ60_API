@@ -29,6 +29,7 @@ public class ClientMain {
 		StudentController sc = new StudentController();
 		String data = null;
 		boolean check = true;
+		String result = null;
 		try {
 			socket = new Socket("192.168.1.125", 8282);
 			System.out.println("Server 접속 성공");
@@ -53,7 +54,6 @@ public class ClientMain {
 				case 2:
 					System.out.println("학생의 이름을 검색해주세요");
 					String name = scanner.next();
-					//name = "2. "+name;
 					bw.write("2."+name+"\r\n");
 					bw.flush();
 					is = socket.getInputStream();
@@ -64,9 +64,19 @@ public class ClientMain {
 					sc.start(data);
 					break;
 				case 3:
-					
+					result = sc.start(select+"");
+					result = select+result;
+					bw.write("3."+result+"\r\n");
+					bw.flush();
 					break;
 				case 4:
+					
+					result = sc.start(select+"");
+					result = select+result;
+					bw.write("4."+result+"\r\n");
+					bw.flush();
+					
+					
 					break;
 				default:
 					bw.write(select+"\r\n");

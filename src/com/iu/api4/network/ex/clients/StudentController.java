@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 
 public class StudentController {
 
-	public void start(String data) {
+	public String start(String data) {
 		int select = Integer.parseInt(data.substring(0, 1));
 		data = data.substring(3);
 		ArrayList<StudentDTO> ar = new ArrayList<>();
@@ -13,6 +13,7 @@ public class StudentController {
 		StudentView sv = new StudentView();
 		StudentDTO studentDTO = new StudentDTO();
 		StudentDAO studentDAO = new StudentDAO();
+		String result = null;
 		while(st.hasMoreTokens()) {
 			studentDTO = new StudentDTO();
 			studentDTO.setName(st.nextToken());
@@ -34,16 +35,17 @@ public class StudentController {
 					sv.view(studentDTO);
 					break;
 				case 3:
-					String one = studentDAO.add();
+					result = studentDAO.add();
 					break;
 				case 4:
+					result = studentDAO.remove();
 					
 					break;
 				default:
 					
 					break;
 			}
-		
+		return result;
 	
 	}
 }

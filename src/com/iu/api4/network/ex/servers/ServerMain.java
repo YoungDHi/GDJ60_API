@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ServerMain {
 
@@ -27,26 +28,37 @@ public class ServerMain {
 		String msg = null;
 		boolean check = true;
 		try {
+//			ArrayList<StudentDTO> ar = new StudentDAO().init();
+//			System.out.println(ar.size());
+//			System.out.println(ar.get(1).getName());
+			
+			
+			
 			ss= new ServerSocket(8282);
 			System.out.println("Client 접속을 기다리는 중");
 			socket = ss.accept();
 			System.out.println("client와 연결 성공");
 			while(check) {
-				is = socket.getInputStream();
-				ir = new InputStreamReader(is);
-				br = new BufferedReader(ir);
-				msg = br.readLine();
+//				is = socket.getInputStream();
+//				ir = new InputStreamReader(is);
+//				br = new BufferedReader(ir);
+//				msg = br.readLine();
 				String student = "iu-1-20-30-40-suji-2-30-40-50";
-				os = socket.getOutputStream();
-				ow = new OutputStreamWriter(os);
-				bw = new BufferedWriter(ow);
+//				os = socket.getOutputStream();
+//				ow = new OutputStreamWriter(os);
+//				bw = new BufferedWriter(ow);
 				if(msg.equals("1")) {
 					bw.write(student+"\r\n");
 					bw.flush();
 				}else if(msg.substring(0, 1).equals("2")) {
 					student = "iu-1-20-30-40";
-					bw.write(student+"/r/n");
+					bw.write(student+"\r\n");
 					bw.flush();
+				}else if(msg.substring(0, 1).equals("3")) {
+				
+					student = "suji-2-30-40-50-"+student;
+					
+					
 				}else {
 					System.out.println("시스템 종료");
 					check = false;
