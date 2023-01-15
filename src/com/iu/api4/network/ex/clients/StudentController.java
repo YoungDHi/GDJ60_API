@@ -57,8 +57,7 @@ public class StudentController {
 					bw.write("1:\r\n");
 					bw.flush();
 					
-					data = "1:"+br.readLine();
-					data = data.substring(2);
+					data = br.readLine();
 					System.out.println(data);
 					StringTokenizer st = new StringTokenizer(data, "-");
 					while(st.hasMoreTokens()) {
@@ -79,10 +78,10 @@ public class StudentController {
 					String name = scanner.next();
 					bw.write("2:"+name+"\r\n");
 					bw.flush();
-					data = "2:"+br.readLine();
-					data = data.substring(2);
-					System.out.println(data);
-					if(data != null) {
+					data = br.readLine();
+					if(data.equals("no data")) {
+						System.out.println("학생정보가 없습니다");
+					} else {
 						String [] onename = data.split("-");
 						studentDTO.setName(onename[0]);
 						studentDTO.setNum(Integer.parseInt(onename[1]));
@@ -93,19 +92,22 @@ public class StudentController {
 						studentDTO.setAvg(studentDTO.getTotal()/3.0);
 						System.out.println("검색한 학생의 정보를 출력합니다");
 						sv.view(studentDTO);
-					} else {
-						System.out.println("학생정보가 없습니다");
 					}
+					
 					break;
 				case 3:
 					result = studentDAO.add();
 					bw.write("3:"+result+"\r\n");
 					bw.flush();
+					data = br.readLine();
+					System.out.println(data);
 					break;
 				case 4:
 					result = studentDAO.remove();
 					bw.write("4:"+result+"\r\n");
 					bw.flush();
+					data = br.readLine();
+					System.out.println(data);
 					break;
 				default:
 					bw.write(select+"\r\n");

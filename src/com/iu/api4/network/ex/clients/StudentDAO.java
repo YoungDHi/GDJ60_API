@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class StudentDAO {
 	
+	private Scanner scanner = new Scanner(System.in);
+	
 	public String add() {
 		
-		Scanner scanner = new Scanner(System.in);
+		
 		
 		System.out.println("추가할 이름을 입력해주세요");
 		String name = scanner.next();
@@ -19,11 +21,11 @@ public class StudentDAO {
 		System.out.println("수학점수를 입력해주세요");
 		int Math = scanner.nextInt();
 		
-		name = name+","+num+","+Kor+","+Eng+","+Math;
+		name = name+"-"+num+"-"+Kor+"-"+Eng+"-"+Math;
 		return name;
 	}
 	public String remove() {
-		Scanner scanner = new Scanner(System.in);
+		
 		System.out.println("제거할 이름을 검색해주세요");
 		String name = scanner.next();
 		return name;

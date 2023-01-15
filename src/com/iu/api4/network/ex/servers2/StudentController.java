@@ -40,7 +40,9 @@ public class StudentController {
 		ow = new OutputStreamWriter(os);
 		bw = new BufferedWriter(ow);
 		boolean check = true;
+		String name = null;
 		while(check) {
+			boolean check1 = true;
 			String select = br.readLine();
 			String [] s = select.split(":");
 			
@@ -51,28 +53,50 @@ public class StudentController {
 			case "2":
 				//2. iu
 				
-				String name = select.substring(2);
+				name = select.substring(2);
 				
 				
 				for(StudentDTO studentDTO:ar) {
 					
-					if(name.equals(studentDTO.getName())) {
+					if(name.toUpperCase().equals(studentDTO.getName().toUpperCase())) {
 						select = studentDAO.makeList(studentDTO);
 						break;
 					} else {
-						select = null;
+						select = "no data";
 					}
 					
 				}
-				
+				break;
+			case "3":
+				StudentDTO studentDTO = new StudentDTO();
+				studentDTO = studentDAO.add(select);
+				ar.add(studentDTO);
+				select = "추가 성공";
+				break;
+			case "4":
+				//4:su
+				name = select.substring(2);
+				int i=0;
+				for(StudentDTO studentDTO1:ar) {
+					if(name.toUpperCase().equals(studentDTO1.getName().toUpperCase())) {
+						ar.remove(studentDTO1);
+						i=1;
+						break;
+					}
+				}
+				if(i == 1) {
+					select = "삭제 성공";
+				} else {
+					select = "삭제할 정보가 없습니다";
+				}
 				break;
 			default:
 				check = false;
 				break;
 			}
 			if(check) {
-			bw.write(select+"\r\n");
-			bw.flush();
+				bw.write(select+"\r\n");
+				bw.flush();
 			}
 		}
 		

@@ -10,9 +10,20 @@ public class StudentDAO {
 	
 	private String result;
 	
-	public StudentDAO() {
+	//학생추가
+	public StudentDTO add(String data) {
+		StudentDTO studentDTO = new StudentDTO();
 		
-		result = null;
+		data = data.substring(2);
+		String [] add = data.split("-");
+		studentDTO.setName(add[0]);
+		studentDTO.setNum(Integer.parseInt(add[1]));
+		studentDTO.setKor(Integer.parseInt(add[2]));
+		studentDTO.setEng(Integer.parseInt(add[3]));
+		studentDTO.setMath(Integer.parseInt(add[4]));
+		studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
+		studentDTO.setAvg(studentDTO.getTotal()/3.0);
+		return studentDTO;
 		
 	}
 	
@@ -63,7 +74,7 @@ public class StudentDAO {
 		return result;
 	}
 	
-	
+	//초기화
 	public ArrayList<StudentDTO> init() throws Exception{
 		
 		ArrayList<StudentDTO> ar = new ArrayList<>();
