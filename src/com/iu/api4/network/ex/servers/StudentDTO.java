@@ -1,10 +1,9 @@
 package com.iu.api4.network.ex.servers;
 
 public class StudentDTO {
-
 	private String name;
 	private int num;
-	private int kor;
+	private int Kor;
 	private int eng;
 	private int math;
 	private int total;
@@ -23,10 +22,10 @@ public class StudentDTO {
 		this.num = num;
 	}
 	public int getKor() {
-		return kor;
+		return Kor;
 	}
 	public void setKor(int kor) {
-		this.kor = kor;
+		Kor = kor;
 	}
 	public int getEng() {
 		return eng;
@@ -55,4 +54,7 @@ public class StudentDTO {
 	
 	
 	
+	
+	
+
 }
